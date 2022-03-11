@@ -7,12 +7,13 @@ import {
   Button,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert
+  Alert,
 } from "react-native";
 import Card from "../components/Card";
 import Strings from "../res/strings";
 import Colors from "../res/colors";
 import Input from "../components/Input";
+import NumberContainer from "./NumberContainer";
 
 const StartGameScreen = (props) => {
   const [enteredNumber, setEnteredNumber] = useState("");
@@ -31,9 +32,13 @@ const StartGameScreen = (props) => {
   const onPresConfirm = () => {
     const chosenNumber = parseInt(enteredNumber);
     if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
-      Alert.alert(Strings.str_invalid_number, Strings.str_number_limit, [{
-        text: Strings.str_ok, style: 'destructive', onPress: onPressReset
-      }])
+      Alert.alert(Strings.str_invalid_number, Strings.str_number_limit, [
+        {
+          text: Strings.str_ok,
+          style: "destructive",
+          onPress: onPressReset,
+        },
+      ]);
       return;
     }
     setConfirmed(true);
@@ -45,9 +50,11 @@ const StartGameScreen = (props) => {
   let outputNumber;
   if (confirmed) {
     outputNumber = (
-      <Text>
-        {Strings.str_choose_number} {selectedNumber}
-      </Text>
+      <Card style={styles.summaryContainer}>
+        <Text>{Strings.str_choose_number}</Text>
+        <NumberContainer>{selectedNumber}</NumberContainer>
+        <Button title={Strings.str_start_game} onPress={() => props.onStartGame(selectedNumber)} />
+      </Card>
     );
   }
 
@@ -58,7 +65,7 @@ const StartGameScreen = (props) => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}>{Strings.str_start_game}</Text>
+        <Text style={styles.title}>{Strings.str_title_start_game}</Text>
         <Card style={styles.inputContainer}>
           <Text>{Strings.str_select_number}</Text>
           <Input
@@ -121,6 +128,10 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     textAlign: "center",
+  },
+  summaryContainer: {
+    marginTop: 20,
+    alignItems: "center",
   },
 });
 
