@@ -3,6 +3,8 @@ export default {
   str_reset: "Reset",
   str_confirm: "Confirm",
   str_ok: "OK",
+  str_sorry: "Sorry!",
+  str_cancel: "Cancel",
   
   // Start Game Screen
   str_title_start_game: "Start a New Game!",
@@ -17,4 +19,13 @@ export default {
   str_opponent_guess: "Opponent's Guess",
   str_lower: "Lower",
   str_greater: "Greater",
+
+  // Game Over
+  str_game_over: "Game Over",
+  str_title_game_over: "The Game is Over!",
+  str_number_rounds: "Number of rounds:",
+  str_number_og_hit: "Number was",
+  str_new_game: "New Game",
+  str_dont_lie: "Don't lie!",
+  str_wrong_try: "You know that this is wrong...",
 };
